@@ -25,6 +25,9 @@ or you can load the package via autoload:
 (autoload 'dired-single-toggle-buffer-name "dired-single" "" t)
 ```
 
+or you can just add `(package-initialize)` to automatically load every
+package installed by `package.el`.
+
 To add a directory to your load-path, use something like the following:
 
 ```

@@ -182,10 +182,6 @@
 ;;  under Windows NT 4.0 SP6 and Emacs 20.7.1 under Linux (RH7).  Please, let
 ;;  me know if it works with other OS and versions of Emacs.
 
-;;; Change Log:
-;;
-;;  see http://www.northbound-train.com/emacs/dired-single.log
-
 ;;; **************************************************************************
 ;;; **************************************************************************
 ;;; **************************************************************************

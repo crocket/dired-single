@@ -92,7 +92,7 @@
 ;;
 ;;     See below for key-binding recommendations.
 
-;;; Recomended Keybindings:
+;;; Recommended Keybindings:
 ;;
 ;;  To use the single-buffer feature most effectively, I recommend adding the
 ;;  following code to your .emacs file.  Basically, it remaps the [Return] key

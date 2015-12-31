@@ -1,3 +1,12 @@
+;;; dired-single.el --- Reuse the current dired buffer to visit another directory
+
+;;; Version: 0.1.1
+;;; Author:     Joe Casadonte <emacs@northbound-train.com>
+;;; Maintainer: crocket <crockabiscuit@gmail.com>
+;;; Commentary:
+
+;;; Refer to https://github.com/crocket/dired-single for usage instructions.
+
 (eval-when-compile
   (defvar byte-compile-dynamic nil) ; silence the old byte-compiler
   (set (make-local-variable 'byte-compile-dynamic) t))

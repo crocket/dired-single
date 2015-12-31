@@ -1,12 +1,19 @@
-;;; dired-single.el --- Reuse the current dired buffer to visit another directory
+;;; dired-single.el --- Reuse the current dired buffer to visit a directory
 
-;;; Version: 0.1.1
-;;; Author:     Joe Casadonte <emacs@northbound-train.com>
-;;; Maintainer: crocket <crockabiscuit@gmail.com>
+;; Copyright (c) 2000-2001 by Joseph L. Casadonte Jr.
+;; Copyright (c) 2015 by crocket
+
+;; Version:    0.1.1
+;; Author:     Joe Casadonte <emacs@northbound-train.com>
+;; Maintainer: crocket <crockabiscuit@gmail.com>
+;; Created:    August 17, 2000
+;; Keywords:   dired, reuse, buffer
+
 ;;; Commentary:
+;;
+;; Visit https://github.com/crocket/dired-single for instructions.
 
-;;; Refer to https://github.com/crocket/dired-single for usage instructions.
-
+;;; Code:
 (eval-when-compile
   (defvar byte-compile-dynamic nil) ; silence the old byte-compiler
   (set (make-local-variable 'byte-compile-dynamic) t))

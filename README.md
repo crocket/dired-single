@@ -73,7 +73,7 @@ name.  Will also seek to uniquify the 'real' buffer name.
 To use the single-buffer feature most effectively, I recommend adding the
 following code to your .emacs file.  Basically, it remaps the [Return] key
 to call the `dired-single-buffer` function instead of its normal
-function (`dired-advertised-find-file1).  Also, it maps the caret ("^")
+function (`dired-advertised-find-file1`).  Also, it maps the caret ("^")
 key to go up one directory, using the `dired-single-buffer` command
 instead of the normal one (`dired-up-directory`), which has the same effect
 as hitting [Return] on the parent directory line ("..")).  Finally, it maps

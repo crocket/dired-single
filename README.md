@@ -34,6 +34,40 @@ To add a directory to your load-path, use something like the following:
 (setq load-path (cons (expand-file-name "/some/load/path") load-path))
 ```
 
+## Usage
+
+`M-x dired-single-buffer`
+
+Visits the selected directory in the current buffer, replacing the
+current contents with the contents of the new directory.  This doesn't
+prevent you from having more than one dired buffer.  The main difference
+is that a given dired buffer will not spawn off a new buffer every time
+a new directory is visited.
+
+If the variable dired-single-use-magic-buffer is non-nil, and the current
+buffer's name is the same as that specified by the variable
+dired-single-magic-buffer-name, then the new directory's buffer will retain
+that same name (i.e. not only will dired only use a single buffer, but
+its name will not change every time a new directory is entered).
+
+`M-x dired-single-buffer-mouse`
+
+Essentially this is the same as `dired-single-buffer', except that the
+action is initiated by a mouse-click instead of a keystroke.
+
+`M-x dired-single-magic-buffer`
+
+Switch to an existing buffer whose name is the value of
+dired-single-magic-buffer-name. If no such buffer exists, launch dired in a
+new buffer and rename that buffer to the value of
+dired-single-magic-buffer-name.  If the current buffer is the magic buffer,
+it will prompt for a new directory to visit.
+
+`M-x dired-single-toggle-buffer-name`
+
+Toggle between the 'magic' buffer name and the 'real' dired buffer
+name.  Will also seek to uniquify the 'real' buffer name.
+
 ## Recommended Keybindings
 
 To use the single-buffer feature most effectively, I recommend adding the
@@ -92,3 +126,40 @@ what I have in my .emacs file:
 ```
 
 Of course, these are only suggestions.
+
+## Customization
+
+M-x `dired-single-customize` to customize all package options.
+
+The following variables can be customized:
+
+* `dired-single-use-magic-buffer`
+
+Boolean used to determine if the dired-single functions should look
+for and retain a specific buffer name.  The buffer name to look for
+is specified with `dired-single-magic-buffer-name`.
+
+* `dired-single-magic-buffer-name`
+
+Name of buffer to use if `dired-single-use-magic-buffer' is true.  Once a
+dired buffer has this name, it will always keep this name (unless it's
+explicitly renamed by you).
+
+## To Do
+
+Nothing, at the moment.
+
+## Credits
+
+The single buffer code is loosely based on code posted to the NT-Emacs
+mailing list by Steve Kemp & Rob Davenport.  The magic buffer name code
+is all mine.
+
+## Comments
+
+Any comments, suggestions, bug reports or upgrade requests are welcome.
+Please send them to Joe Casadonte (emacs@northbound-train.com).
+
+This version of dired-single was developed and tested with NTEmacs 20.5.1
+under Windows NT 4.0 SP6 and Emacs 20.7.1 under Linux (RH7).  Please, let
+me know if it works with other OS and versions of Emacs.

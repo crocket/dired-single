@@ -88,24 +88,24 @@ in another window."
   (interactive)
   ;; use arg passed in or find name of current line
   (let ((name (or default-dirname (dired-get-filename nil t))))
-	(save-excursion
-	  (save-match-data
-		;; See if the selection is a directory or not.
-		(end-of-line)
-		(let ((eol (point)))
-		  (beginning-of-line)
-		  ;; assume directory if arg passed in
-		  (if (or default-dirname (re-search-forward "^  d" eol t))
-			  ;; save current buffer's name
-			  (let ((current-buffer-name (buffer-name)))
-				;; go ahead and read in the directory
-				(find-alternate-file name)
-				;; if the saved buffer's name was the magic name, rename this buffer
-				(if (and dired-single-use-magic-buffer
-						 (string= current-buffer-name dired-single-magic-buffer-name))
-					(rename-buffer dired-single-magic-buffer-name)))
-			;; it's just a file
-		  (find-file name)))))))
+        (save-excursion
+          (save-match-data
+                ;; See if the selection is a directory or not.
+                (end-of-line)
+                (let ((eol (point)))
+                  (beginning-of-line)
+                  ;; assume directory if arg passed in
+                  (if (or default-dirname (re-search-forward "^  d" eol t))
+                          ;; save current buffer's name
+                          (let ((current-buffer-name (buffer-name)))
+                                ;; go ahead and read in the directory
+                                (find-alternate-file name)
+                                ;; if the saved buffer's name was the magic name, rename this buffer
+                                (if (and dired-single-use-magic-buffer
+                                                 (string= current-buffer-name dired-single-magic-buffer-name))
+                                        (rename-buffer dired-single-magic-buffer-name)))
+                        ;; it's just a file
+                  (find-file name)))))))
 
 ;;;; ------------------------------------------------------------------------
 ;;;###autoload
@@ -115,10 +115,10 @@ in another window."
 Argument CLICK is the mouse-click event."
   (interactive "e")
   (let* ( (start (event-start click))
-		  (window (car start))
-		  (pos (car (cdr start))) )
-	(select-window window)
-	(goto-char pos))
+                  (window (car start))
+                  (pos (car (cdr start))) )
+        (select-window window)
+        (goto-char pos))
   (dired-single-buffer))
 
 ;;;; ------------------------------------------------------------------------
@@ -135,31 +135,31 @@ the currently displayed directory)."
   (interactive)
   ;; do we not have one or are we already in it?
   (let ((magic-dired-buffer (get-buffer dired-single-magic-buffer-name)))
-	(if (or (eq magic-dired-buffer nil)
-			(eq magic-dired-buffer (current-buffer)))
-		;; nothing to switch to
-		;; get directory name to start in
-		(let ((dirname (or default-dirname
-						   (read-file-name (format "Dired %s(directory): " "")
-										   nil default-directory t))))
+        (if (or (eq magic-dired-buffer nil)
+                        (eq magic-dired-buffer (current-buffer)))
+                ;; nothing to switch to
+                ;; get directory name to start in
+                (let ((dirname (or default-dirname
+                                                   (read-file-name (format "Dired %s(directory): " "")
+                                                                                   nil default-directory t))))
 
-		  ;; make sure it's really a directory
-		  (if (not (file-directory-p dirname))
-			  (error "Error: <%s> is not a directory" dirname))
+                  ;; make sure it's really a directory
+                  (if (not (file-directory-p dirname))
+                          (error "Error: <%s> is not a directory" dirname))
 
-		  ;; do we need a new buffer?
-		  (if (eq magic-dired-buffer nil)
-			  ;; find the file in new buffer, current window
-			  (find-file dirname)
-			;; just find in place of current buffer
-			(find-alternate-file dirname))
-		  ;; rename the buffer, where ever we found it
-		  (rename-buffer dired-single-magic-buffer-name))
-	  ;; we're not there (we have one already), so simply switch to it
-	  (switch-to-buffer magic-dired-buffer)
-	  ;; if called with a default, try it again
-	  (if default-dirname
-		  (dired-single-magic-buffer default-dirname)))))
+                  ;; do we need a new buffer?
+                  (if (eq magic-dired-buffer nil)
+                          ;; find the file in new buffer, current window
+                          (find-file dirname)
+                        ;; just find in place of current buffer
+                        (find-alternate-file dirname))
+                  ;; rename the buffer, where ever we found it
+                  (rename-buffer dired-single-magic-buffer-name))
+          ;; we're not there (we have one already), so simply switch to it
+          (switch-to-buffer magic-dired-buffer)
+          ;; if called with a default, try it again
+          (if default-dirname
+                  (dired-single-magic-buffer default-dirname)))))
 
 ;;;; ------------------------------------------------------------------------
 ;;;###autoload

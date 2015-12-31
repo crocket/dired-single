@@ -158,7 +158,6 @@ is all mine.
 ## Comments
 
 Any comments, suggestions, bug reports or upgrade requests are welcome.
-Please send them to Joe Casadonte (emacs@northbound-train.com).
 
 This version of dired-single was developed and tested with NTEmacs 20.5.1
 under Windows NT 4.0 SP6 and Emacs 20.7.1 under Linux (RH7).  Please, let

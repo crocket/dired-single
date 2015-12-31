@@ -3,7 +3,7 @@
 ;; Copyright (c) 2000-2001 by Joseph L. Casadonte Jr.
 ;; Copyright (c) 2015 by crocket
 
-;; Version:    0.1.1
+;; Version:    0.1.2
 ;; Author:     Joe Casadonte <emacs@northbound-train.com>
 ;; Maintainer: crocket <crockabiscuit@gmail.com>
 ;; Created:    August 17, 2000

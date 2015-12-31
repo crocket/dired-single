@@ -145,20 +145,8 @@ Name of buffer to use if `dired-single-use-magic-buffer' is true.  Once a
 dired buffer has this name, it will always keep this name (unless it's
 explicitly renamed by you).
 
-## To Do
-
-Nothing, at the moment.
-
 ## Credits
 
 The single buffer code is loosely based on code posted to the NT-Emacs
 mailing list by Steve Kemp & Rob Davenport.  The magic buffer name code
 is all mine.
-
-## Comments
-
-Any comments, suggestions, bug reports or upgrade requests are welcome.
-
-This version of dired-single was developed and tested with NTEmacs 20.5.1
-under Windows NT 4.0 SP6 and Emacs 20.7.1 under Linux (RH7).  Please, let
-me know if it works with other OS and versions of Emacs.

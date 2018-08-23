@@ -32,6 +32,8 @@
   (set (make-local-variable 'byte-compile-dynamic) t))
 
 (eval-and-compile
+  (require 'cl-lib)
+  (require 'dired)
   (autoload 'dired-get-filename "dired"))
 
 ;;; **************************************************************************
@@ -213,6 +215,15 @@ Will also seek to uniquify the 'real' buffer name."
       (if existing-buffer
           (kill-buffer existing-buffer))
       (rename-buffer dired-single-magic-buffer-name))))
+
+;;;; ------------------------------------------------------------------------
+;;;###autoload
+(defun dired-single-up-directory (&optional other-window)
+  "Like `dired-up-directory' but with `dired-single-buffer'."
+  (interactive)
+  ;; replace dired with dired-single-buffer
+  (cl-letf (((symbol-function 'dired) (symbol-function 'dired-single-buffer)))
+    (dired-up-directory other-window)))
 
 ;;; **************************************************************************
 ;;; ***** we're done

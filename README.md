@@ -68,15 +68,21 @@ it will prompt for a new directory to visit.
 Toggle between the 'magic' buffer name and the 'real' dired buffer
 name.  Will also seek to uniquify the 'real' buffer name.
 
+`M-x dired-single-up-directory`
+
+Like `dired-up-directory`, but reuses the buffer.  It handles the case
+where the dired buffer has multiple subdirs listed (with
+`dired-maybe-insert-subdir`), by just moving the point to the subdir
+without refreshing the buffer.
+
 ## Recommended Keybindings
 
 To use the single-buffer feature most effectively, I recommend adding the
 following code to your .emacs file.  Basically, it remaps the [Return] key
 to call the `dired-single-buffer` function instead of its normal
 function (`dired-advertised-find-file`).  Also, it maps the caret ("^")
-key to go up one directory, using the `dired-single-buffer` command
-instead of the normal one (`dired-up-directory`), which has the same effect
-as hitting [Return] on the parent directory line ("..")).  Finally, it maps
+key to go up one directory, using the `dired-single-up-directory` command
+instead of the normal one (`dired-up-directory`).  Finally, it maps
 a button-one click to the `dired-single-buffer-mouse` function, which
 does some mouse selection stuff, and then calls into the main
 `dired-single-buffer` function.
@@ -92,9 +98,7 @@ The following code will work whether or not dired has been loaded already.
   ;; <add other stuff here>
   (define-key dired-mode-map [return] 'dired-single-buffer)
   (define-key dired-mode-map [mouse-1] 'dired-single-buffer-mouse)
-  (define-key dired-mode-map "^"
-        (function
-         (lambda nil (interactive) (dired-single-buffer "..")))))
+  (define-key dired-mode-map "^" 'dired-single-up-directory)
 
 ;; if dired's already loaded, then the keymap will be bound
 (if (boundp 'dired-mode-map)

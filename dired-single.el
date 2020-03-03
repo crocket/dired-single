@@ -119,24 +119,21 @@ in another window."
   (interactive)
   ;; use arg passed in or find name of current line
   (let ((name (or default-dirname (dired-get-filename nil t))))
-    (save-excursion
-      (save-match-data
-        ;; See if the selection is a directory or not.
-        (end-of-line)
-        (let ((eol (point)))
-          (beginning-of-line)
-          ;; assume directory if arg passed in
-          (if (or default-dirname (re-search-forward "^  d" eol t))
-              ;; save current buffer's name
-              (let ((current-buffer-name (buffer-name)))
-                ;; go ahead and read in the directory
-                (find-alternate-file name)
-                ;; if the saved buffer's name was the magic name, rename this buffer
-                (if (and dired-single-use-magic-buffer
-                         (string= current-buffer-name dired-single-magic-buffer-name))
-                    (rename-buffer dired-single-magic-buffer-name)))
-            ;; it's just a file
-            (find-file name)))))))
+    ;; See if the selection is a directory or not.
+    ;; assume directory if arg passed in
+    (if (or default-dirname
+            (and (dired-file-name-at-point)
+                 (file-directory-p (dired-file-name-at-point))))
+        ;; save current buffer's name
+        (let ((current-buffer-name (buffer-name)))
+          ;; go ahead and read in the directory
+          (find-alternate-file name)
+          ;; if the saved buffer's name was the magic name, rename this buffer
+          (if (and dired-single-use-magic-buffer
+                   (string= current-buffer-name dired-single-magic-buffer-name))
+              (rename-buffer dired-single-magic-buffer-name)))
+      ;; it's just a file
+      (find-file name))))
 
 ;;;; ------------------------------------------------------------------------
 ;;;###autoload
